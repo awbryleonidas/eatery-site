@@ -37,7 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <?php } else { ?>
                                         <i class="fa fa-circle-o" aria-hidden="true"></i>
                                     <?php } ?>
-                                    <a href="javascript:void(0);" data-categorie-id="<?= $page['id'] ?>" class="go-category left-side <?= isset($_GET['category']) && $_GET['category'] == $page['id'] ? 'selected' : '' ?>">
+                                    <a href="javascript:void(0);" data-category-id="<?= $page['id'] ?>" class="go-category left-side <?= isset($_GET['category']) && $_GET['category'] == $page['id'] ? 'selected' : '' ?>">
                                         <?= $page['name'] ?>
                                     </a>
                                     <?php

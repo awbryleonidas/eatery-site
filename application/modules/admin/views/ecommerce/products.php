@@ -46,10 +46,10 @@
                             <label>Category:</label>
                             <select name="category" class="form-control selectpicker change-products-form">
                                 <option value="">None</option>
-                                <?php foreach ($shop_categories as $key_cat => $shop_categorie) { ?>
+                                <?php foreach ($shop_categories as $key_cat => $shop_category) { ?>
                                     <option <?= isset($_GET['category']) && $_GET['category'] == $key_cat ? 'selected=""' : '' ?> value="<?= $key_cat ?>">
                                         <?php
-                                        foreach ($shop_categorie['info'] as $nameAbbr) {
+                                        foreach ($shop_category['info'] as $nameAbbr) {
                                             if ($nameAbbr['abbr'] == $this->config->item('language_abbr')) {
                                                 echo $nameAbbr['name'];
                                             }

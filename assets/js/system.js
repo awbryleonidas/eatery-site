@@ -25,7 +25,7 @@ if (typeof datepicker !== 'undefined') {
 
 //Filters Technique
 $('.go-category').click(function () {
-    var category = $(this).data('categorie-id');
+    var category = $(this).data('category-id');
     $('[name="category"]').val(category);
     submitForm();
 });

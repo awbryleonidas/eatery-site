@@ -80,9 +80,7 @@ CREATE TABLE IF NOT EXISTS `languages` (
 
 
 INSERT INTO `languages` (`id`, `abbr`, `name`, `currency`, `currencyKey`, `flag`) VALUES
-(1, 'bg', 'bulgarian', 'лв', 'BGN', 'bg.jpg'),
-(2, 'en', 'english', '$', 'USD', 'en.jpg'),
-(3, 'gr', 'greece', 'EUR', 'EUR', 'gr.png');
+(1, 'en', 'english', '$', 'USD', 'en.jpg');
 
 
 CREATE TABLE IF NOT EXISTS `orders` (
@@ -143,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `time` int(10) unsigned NOT NULL COMMENT 'time created',
   `time_update` int(10) unsigned NOT NULL COMMENT 'time updated',
   `visibility` tinyint(1) NOT NULL DEFAULT '1',
-  `shop_categorie` int(11) NOT NULL,
+  `shop_category` int(11) NOT NULL,
   `quantity` int(11) NOT NULL DEFAULT '0',
   `procurement` int(10) unsigned NOT NULL,
   `in_slider` tinyint(1) NOT NULL DEFAULT '0',
@@ -303,7 +301,7 @@ INSERT INTO `value_store` (`id`, `thekey`, `value`) VALUES
 (21, 'paypal_sandbox', '0'),
 (22, 'publicDateAdded', '0'),
 (23, 'googleApi', ''),
-(24, 'template', 'redlabel'),
+(24, 'template', 'greenlabel'),
 (25, 'cashondelivery_visibility', '1'),
 (26, 'showBrands', '0'),
 (27, 'showInSlider', '0'),

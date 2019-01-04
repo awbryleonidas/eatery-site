@@ -18,8 +18,8 @@
                     <h3><?= lang('categories') ?></h3>
                     <?php if (!empty($footerCategories)) { ?>
                         <ul>
-                            <?php foreach ($footerCategories as $key => $categorie) { ?>
-                                <li><a href="javascript:void(0);" data-categorie-id="<?= $key ?>" class="go-category"><?= $categorie ?></a></li>
+                            <?php foreach ($footerCategories as $key => $category) { ?>
+                                <li><a href="javascript:void(0);" data-category-id="<?= $key ?>" class="go-category"><?= $category ?></a></li>
                             <?php } ?>
                         </ul>
                     <?php } else { ?>

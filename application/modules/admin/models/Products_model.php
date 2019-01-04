@@ -35,7 +35,7 @@ class Products_model extends CI_Model
             $this->db->where("(products_translations.title LIKE '%$search_title%')");
         }
         if ($category != null) {
-            $this->db->where('shop_categorie', $category);
+            $this->db->where('shop_category', $category);
         }
         $this->db->join('products_translations', 'products_translations.for_id = products.id', 'left');
         $this->db->where('products_translations.abbr', MY_DEFAULT_LANGUAGE_ABBR);
@@ -57,7 +57,7 @@ class Products_model extends CI_Model
             $this->db->order_by('products.position', 'asc');
         }
         if ($category != null) {
-            $this->db->where('shop_categorie', $category);
+            $this->db->where('shop_category', $category);
         }
         if ($vendor != null) {
             $this->db->where('vendor_id', $vendor);
@@ -108,7 +108,7 @@ class Products_model extends CI_Model
             $is_update = true;
             if (!$this->db->where('id', $id)->update('products', array(
                         'image' => $post['image'] != null ? $_POST['image'] : $_POST['old_image'],
-                        'shop_categorie' => $post['shop_categorie'],
+                        'shop_category' => $post['shop_category'],
                         'quantity' => $post['quantity'],
                         'in_slider' => $post['in_slider'],
                         'position' => $post['position'],
@@ -134,7 +134,7 @@ class Products_model extends CI_Model
             }
             if (!$this->db->insert('products', array(
                         'image' => $post['image'],
-                        'shop_categorie' => $post['shop_categorie'],
+                        'shop_category' => $post['shop_category'],
                         'quantity' => $post['quantity'],
                         'in_slider' => $post['in_slider'],
                         'position' => $post['position'],

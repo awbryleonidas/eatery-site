@@ -19,7 +19,7 @@
         <?php
     }
     ?>
-    <a href="javascript:void(0);" data-toggle="modal" data-target="#add_edit_articles" class="btn btn-primary btn-xs pull-right" style="margin-bottom:10px;"><b>+</b> Add shop categorie</a>
+    <a href="javascript:void(0);" data-toggle="modal" data-target="#add_edit_articles" class="btn btn-primary btn-xs pull-right" style="margin-bottom:10px;"><b>+</b> Add shop category</a>
     <div class="clearfix"></div>
     <?php
     if (!empty($shop_categories)) {
@@ -37,11 +37,11 @@
                 </thead>
                 <?php
                 $i = 1;
-                foreach ($shop_categories as $key_cat => $shop_categorie) {
+                foreach ($shop_categories as $key_cat => $shop_category) {
                     $catName = '';
-                    foreach ($shop_categorie['info'] as $ff) {
+                    foreach ($shop_category['info'] as $ff) {
                         $catName .= '<div>'
-                                . '<a href="javascript:void(0);" class="editCategorie" data-indic="' . $i . '" data-for-id="' . $key_cat . '" data-abbr="' . $ff['abbr'] . '" data-toggle="tooltip" data-placement="top" title="Edit this categorie">'
+                                . '<a href="javascript:void(0);" class="editCategorie" data-indic="' . $i . '" data-for-id="' . $key_cat . '" data-abbr="' . $ff['abbr'] . '" data-toggle="tooltip" data-placement="top" title="Edit this category">'
                                 . '<i class="fa fa-pencil" aria-hidden="true"></i>'
                                 . '</a> '
                                 . '[' . $ff['abbr'] . ']<span id="indic-' . $i . '">' . $ff['name'] . '</span>'
@@ -56,15 +56,15 @@
                             <a href="javascript:void(0);" class="editCategorieSub" data-sub-for-id="<?= $key_cat ?>">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                             </a>
-                            <?php foreach ($shop_categorie['sub'] as $sub) { ?>
+                            <?php foreach ($shop_category['sub'] as $sub) { ?>
                                 <div> <?= $sub ?> </div>
                             <?php } ?>
                         </td>
                         <td>
-                            <a href="javascript:void(0);" class="editPosition" data-position-for-id="<?= $key_cat ?>" data-my-position="<?= $shop_categorie['position'] ?>">
+                            <a href="javascript:void(0);" class="editPosition" data-position-for-id="<?= $key_cat ?>" data-my-position="<?= $shop_category['position'] ?>">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                             </a>
-                            <span id="position-<?= $key_cat ?>"><?= $shop_categorie['position'] ?></span>
+                            <span id="position-<?= $key_cat ?>"><?= $shop_category['position'] ?></span>
                         </td>
                         <td class="text-center">
                             <a href="<?= base_url('admin/shopcategories/?delete=' . $key_cat) ?>" class="btn btn-danger btn-xs confirm-delete"><span class="glyphicon glyphicon-remove"></span> Del</a>
@@ -83,7 +83,7 @@
         <div class="alert alert-info">No shop categories found!</div>
     <?php } ?>
 
-    <!-- add edit home categorie -->
+    <!-- add edit home category -->
     <div class="modal fade" id="add_edit_articles" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -102,13 +102,13 @@
                             </div>
                         <?php } ?>
                         <div class="form-group">
-                            <label>Parent <sup>this categorie will be subcategorie of parent</sup>:</label>
+                            <label>Parent <sup>this category will be subcategorie of parent</sup>:</label>
                             <select class="form-control" name="sub_for">
                                 <option value="0">None</option>
                                 <?php
-                                foreach ($shop_categories as $key_cat => $shop_categorie) {
+                                foreach ($shop_categories as $key_cat => $shop_category) {
                                     $aa = '';
-                                    foreach ($shop_categorie['info'] as $ff) {
+                                    foreach ($shop_category['info'] as $ff) {
                                         $aa .= '[' . $ff['abbr'] . ']' . $ff['name'] . '/';
                                     }
                                     ?>
@@ -141,9 +141,9 @@
             <option value=""></option>
             <option value="0">None</option>
             <?php
-            foreach ($shop_categories as $key_cat => $shop_categorie) {
+            foreach ($shop_categories as $key_cat => $shop_category) {
                 $aa = '';
-                foreach ($shop_categorie['info'] as $ff) {
+                foreach ($shop_category['info'] as $ff) {
                     $aa .= '[' . $ff['abbr'] . ']' . $ff['name'] . '/';
                 }
                 ?>

@@ -88,8 +88,8 @@ class Products extends REST_Controller
         if (!isset($_POST['old_price']) || empty($_POST['old_price'])) {
             $errors[] = 'No old_price array or empty';
         }
-        if (!isset($_POST['shop_categorie'])) {
-            $errors[] = 'shop_categorie not found';
+        if (!isset($_POST['shop_category'])) {
+            $errors[] = 'shop_category not found';
         }
         if (!isset($_POST['quantity'])) {
             $errors[] = 'quantity not found';

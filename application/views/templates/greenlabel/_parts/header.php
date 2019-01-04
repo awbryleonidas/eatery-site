@@ -155,7 +155,7 @@
                                                             $children = true;
                                                         }
                                                         ?> 
-                                                        <a href="javascript:void(0);" data-categorie-id="<?= $nav_category['id'] ?>" class="go-category <?= $children == true ? 'mega-title' : '' ?>"><?= $nav_category['name'] ?></a>
+                                                        <a href="javascript:void(0);" data-category-id="<?= $nav_category['id'] ?>" class="go-category <?= $children == true ? 'mega-title' : '' ?>"><?= $nav_category['name'] ?></a>
                                                         <?php
                                                         if ($children === true) {
                                                             loop_tree_nav($nav_category['children'], true);

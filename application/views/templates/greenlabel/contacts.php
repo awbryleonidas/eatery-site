@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?> 
 <div id="contacts">
-    <div id="map"></div>
+<!--    <div id="map"></div>-->
     <div class="container">
         <div class="row">
             <div class="col-md-8">

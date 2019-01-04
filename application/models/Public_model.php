@@ -43,13 +43,13 @@ class Public_model extends CI_Model
         $this->db->join('vendors', 'vendors.id = products.vendor_id', 'left');
         $this->db->where('products_translations.abbr', MY_LANGUAGE_ABBR);
         $this->db->where('products.in_slider', 0);
-        $this->db->where('products.shop_categorie', 1);
-        $this->db->where('visibility', 1);
+        $this->db->where('products.shop_category', 1);
+//        $this->db->where('visibility', 1);
         if ($this->showOutOfStock == 0) {
             $this->db->where('quantity >', 0);
         }
         $this->db->order_by('products.id', 'desc');
-        $this->db->limit(5);
+        $this->db->limit(20);
         $query = $this->db->get('products');
         return $query->result_array();
     }
@@ -61,13 +61,13 @@ class Public_model extends CI_Model
         $this->db->join('vendors', 'vendors.id = products.vendor_id', 'left');
         $this->db->where('products_translations.abbr', MY_LANGUAGE_ABBR);
         $this->db->where('products.in_slider', 0);
-        $this->db->where('products.shop_categorie', 2);
+        $this->db->where('products.shop_category', 2);
         $this->db->where('visibility', 1);
         if ($this->showOutOfStock == 0) {
             $this->db->where('quantity >', 0);
         }
         $this->db->order_by('products.id', 'desc');
-        $this->db->limit(5);
+        $this->db->limit(20);
         $query = $this->db->get('products');
         return $query->result_array();
     }
@@ -123,7 +123,7 @@ class Public_model extends CI_Model
         if ($this->multiVendor == 0) {
             $this->db->where('vendor_id', 0);
         }
-        $this->db->order_by('position', 'asc');
+        $this->db->order_by('shop_category', 'asc');
         $query = $this->db->get('products');
         return $query->result_array();
     }
@@ -147,7 +147,7 @@ class Public_model extends CI_Model
             foreach ($query->result() as $row) {
                 $findInIds[] = $row->id;
             }
-            $this->db->where_in('products.shop_categorie', $findInIds);
+            $this->db->where_in('products.shop_category', $findInIds);
         }
         if ($big_get['in_stock'] != '') {
             if ($big_get['in_stock'] == 1)
@@ -202,7 +202,7 @@ class Public_model extends CI_Model
     {
         $this->db->select('shop_categories.sub_for, shop_categories.id, shop_categories_translations.name');
         $this->db->where('abbr', MY_LANGUAGE_ABBR);
-        $this->db->order_by('position', 'asc');
+        $this->db->order_by('shop_categories.id', 'asc');
         $this->db->join('shop_categories', 'shop_categories.id = shop_categories_translations.for_id', 'INNER');
         $query = $this->db->get('shop_categories_translations');
         $arr = array();
@@ -238,7 +238,7 @@ class Public_model extends CI_Model
         $this->db->join('products_translations', 'products_translations.for_id = products.id', 'left');
         $this->db->where('products_translations.abbr', MY_LANGUAGE_ABBR);
 
-        $this->db->join('shop_categories_translations', 'shop_categories_translations.for_id = products.shop_categorie', 'inner');
+        $this->db->join('shop_categories_translations', 'shop_categories_translations.for_id = products.shop_category', 'inner');
         $this->db->where('shop_categories_translations.abbr', MY_LANGUAGE_ABBR);
         $this->db->join('vendors', 'vendors.id = products.vendor_id', 'left');
         $this->db->where('visibility', 1);
@@ -431,7 +431,7 @@ class Public_model extends CI_Model
         return $query->result_array();
     }
 
-    public function getbestSellers($categorie = 0, $noId = 0)
+    public function getbestSellers($category = 0, $noId = 0)
     {
         $this->db->select('vendors.url as vendor_url, products.id, products.quantity, products.image, products.url, products_translations.price, products_translations.title, products_translations.old_price');
         $this->db->join('products_translations', 'products_translations.for_id = products.id', 'left');
@@ -440,8 +440,8 @@ class Public_model extends CI_Model
             $this->db->where('products.id !=', $noId);
         }
         $this->db->where('products_translations.abbr', MY_LANGUAGE_ABBR);
-        if ($categorie != 0) {
-            $this->db->where('products.shop_categorie !=', $categorie);
+        if ($category != 0) {
+            $this->db->where('products.shop_category !=', $category);
         }
         $this->db->where('visibility', 1);
         if ($this->showOutOfStock == 0) {
@@ -453,7 +453,7 @@ class Public_model extends CI_Model
         return $query->result_array();
     }
 
-    public function sameCagegoryProducts($categorie, $noId, $vendor_id = false)
+    public function sameCagegoryProducts($category, $noId, $vendor_id = false)
     {
         $this->db->select('vendors.url as vendor_url, products.id, products.quantity, products.image, products.url, products_translations.price, products_translations.title, products_translations.old_price');
         $this->db->join('products_translations', 'products_translations.for_id = products.id', 'left');
@@ -462,7 +462,7 @@ class Public_model extends CI_Model
         if ($vendor_id !== false) {
             $this->db->where('vendor_id', $vendor_id);
         }
-        $this->db->where('products.shop_categorie =', $categorie);
+        $this->db->where('products.shop_category =', $category);
         $this->db->where('products_translations.abbr', MY_LANGUAGE_ABBR);
         $this->db->where('visibility', 1);
         if ($this->showOutOfStock == 0) {
@@ -512,7 +512,7 @@ class Public_model extends CI_Model
 
     public function setSubscribe($array)
     {
-        $num = $this->db->where('email', $arr['email'])->count_all_results('subscribed');
+        $num = $this->db->where('email', $array['email'])->count_all_results('subscribed');
         if ($num == 0) {
             $this->db->insert('subscribed', $array);
         }

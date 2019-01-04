@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+$pagename = array();
 ?>
 <link rel="stylesheet" href="<?= base_url('assets/bootstrap-select-1.12.1/bootstrap-select.min.css') ?>">
 <div class="inner-nav">
@@ -23,7 +24,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <span class="hidde-sp"><?= lang('hideXsNav') ?><i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i></span>
                     </a>
                     <div id="nav-categories">
+
                         <?php
+
+	                        foreach ($home_categories as $page) {
+	                        $pagename[$page['id']] = $page['name'];
+	                        }
 
                         function loop_tree($pages, $is_recursion = false)
                         {
@@ -31,6 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <ul class="<?= $is_recursion === true ? 'children' : 'parent' ?>">
                                 <?php
                                 foreach ($pages as $page) {
+                                    $pagename[$page['id']] = $page['name'];
                                     $children = false;
                                     if (isset($page['children']) && !empty($page['children'])) {
                                         $children = true;
@@ -39,11 +46,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <li>
                                         <?php if ($children === true) {
                                             ?>
-                                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+<!--                                            <i class="fa fa-chevron-right" aria-hidden="true"></i>-->
                                         <?php } else { ?>
-                                            <i class="fa fa-circle-o" aria-hidden="true"></i>
+<!--                                            <i class="fa fa-circle-o" aria-hidden="true"></i>-->
                                         <?php } ?>
-                                        <a href="javascript:void(0);" data-categorie-id="<?= $page['id'] ?>" class="go-category left-side <?= isset($_GET['category']) && $_GET['category'] == $page['id'] ? 'selected' : '' ?>">
+                                        <a href="javascript:void(0);" data-category-id="<?= $page['id'] ?>" class="go-category left-side <?= isset($_GET['category']) && $_GET['category'] == $page['id'] ? 'selected' : '' ?>">
                                             <?= $page['name'] ?>
                                         </a>
                                         <?php
@@ -73,7 +80,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <?php if ($showBrands == 1) { ?>
                 <div class="filter-sidebar">
                     <div class="title">
-                        <span><?= lang('brands') ?></span>
+                        <span><?= (isset($_GET['category']))? $_GET['category'] : 'hjhuihgu' ?></span>
                         <?php if (isset($_GET['brand_id']) && $_GET['brand_id'] != '') { ?>
                             <a href="javascript:void(0);" class="clear-filter" data-type-clear="brand_id" data-toggle="tooltip" data-placement="right" title="<?= lang('clear_the_filter') ?>"><i class="fa fa-times" aria-hidden="true"></i></a>
                         <?php } ?>
@@ -108,44 +115,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="title">
                         <span><?= lang('freeShippingHeader') ?></span>
                     </div>
-                    <div class="oaerror info">
+                    <div class="error info">
                         <strong><?= lang('promo') ?></strong> - <?= str_replace(array('%price%', '%currency%'), array($shippingOrder, CURRENCY), lang('freeShipping')) ?>!
                     </div>
                 </div>
             <?php } ?>
         </div>
         <div class="col-md-9 eqHeight" id="products-side">
-            <h1><?= lang('products') ?></h1>
-            <div class="product-sort gradient-color hide">
-                <div class="row">
-                    <div class="ord col-sm-4">
-                        <div class="form-group">
-                            <select class="selectpicker order form-control" data-style="btn-green" data-order-to="order_new">
-                                <option <?= isset($_GET['order_new']) && $_GET['order_new'] == "desc" ? 'selected' : '' ?> <?= !isset($_GET['order_new']) || $_GET['order_new'] == "" ? 'selected' : '' ?> value="desc"><?= lang('new') ?> </option>
-                                <option <?= isset($_GET['order_new']) && $_GET['order_new'] == "asc" ? 'selected' : '' ?> value="asc"><?= lang('old') ?> </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="ord col-sm-4">
-                        <div class="form-group">
-                            <select class="selectpicker order form-control" data-style="btn-green" data-order-to="order_price" title="<?= lang('price_title') ?>..">
-                                <option label="<?= lang('not_selected') ?>"></option>
-                                <option <?= isset($_GET['order_price']) && $_GET['order_price'] == "asc" ? 'selected' : '' ?> value="asc"><?= lang('price_low') ?> </option>
-                                <option <?= isset($_GET['order_price']) && $_GET['order_price'] == "desc" ? 'selected' : '' ?> value="desc"><?= lang('price_high') ?> </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="ord col-sm-4">
-                        <div class="form-group">
-                            <select class="selectpicker order form-control" data-style="btn-green" data-order-to="order_procurement" title="<?= lang('procurement_title') ?>..">
-                                <option label="<?= lang('not_selected') ?>"></option>
-                                <option <?= isset($_GET['order_procurement']) && $_GET['order_procurement'] == "desc" ? 'selected' : '' ?> value="desc"><?= lang('procurement_desc') ?> </option>
-                                <option <?= isset($_GET['order_procurement']) && $_GET['order_procurement'] == "asc" ? 'selected' : '' ?> value="asc"><?= lang('procurement_asc') ?> </option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+            <h1><?= (isset($_GET['category']))? $pagename[$_GET['category']] : lang('products'); ?></h1>
+<!--            <h1>--><?//= lang('products') ?><!--</h1>-->
             <?php
             if (!empty($products)) {
                 foreach ($products as $product) {

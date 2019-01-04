@@ -32,14 +32,14 @@ class ShopCategories extends ADMIN_Controller
         $rowscount = $this->Categories_model->categoriesCount();
         $data['links_pagination'] = pagination('admin/shopcategories', $rowscount, $this->num_rows, 3);
         if (isset($_GET['delete'])) {
-            $this->saveHistory('Delete a shop categorie');
+            $this->saveHistory('Delete a shop category');
             $this->Categories_model->deleteShopCategorie($_GET['delete']);
-            $this->session->set_flashdata('result_delete', 'Shop Categorie is deleted!');
+            $this->session->set_flashdata('result_delete', 'Shop category is deleted!');
             redirect('admin/shopcategories');
         }
         if (isset($_POST['submit'])) {
             $this->Categories_model->setShopCategorie($_POST);
-            $this->session->set_flashdata('result_add', 'Shop categorie is added!');
+            $this->session->set_flashdata('result_add', 'Shop category is added!');
             redirect('admin/shopcategories');
         }
         if (isset($_POST['editSubId'])) {
@@ -66,7 +66,7 @@ class ShopCategories extends ADMIN_Controller
     {
         $this->login_check();
         $result = $this->Categories_model->editShopCategorie($_POST);
-        $this->saveHistory('Edit shop categorie to ' . $_POST['name']);
+        $this->saveHistory('Edit shop category to ' . $_POST['name']);
     }
 
     /*
@@ -77,7 +77,7 @@ class ShopCategories extends ADMIN_Controller
     {
         $this->login_check();
         $result = $this->Categories_model->editShopCategoriePosition($_POST);
-        $this->saveHistory('Edit shop categorie position ' . $_POST['name']);
+        $this->saveHistory('Edit shop category position ' . $_POST['name']);
     }
 
 }

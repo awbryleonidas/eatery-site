@@ -46,8 +46,8 @@ if (count($sliderProducts) > 0) {
             }
             ?>
         </div>
-        <a class="left carousel-control" href="#home-slider" role="button" data-slide="prev"></a>
-        <a class="right carousel-control" href="#home-slider" role="button" data-slide="next"></a>
+        <a class="left carousel-control" href="#home-slider" role="button" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+        <a class="right carousel-control" href="#home-slider" role="button" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
     </div>
 <?php } ?>
 <div class="home-banners">
@@ -77,9 +77,7 @@ if (count($sliderProducts) > 0) {
                                         <h1><?= $product['title'] ?></h1>
                                         <span class="price"><?= $product['price'] ?> Php</span>
                                     </a>
-                                    <a class="add-to-cart"  href="<?= LANG_URL . '/' . $product['url'] ?>">
-                                        <?= lang('add_to_cart') ?>
-                                    </a>
+<!--                                    <a class="add-to-cart"  href="--><?//= LANG_URL . '/' . $product['url'] ?><!--">More info</a>-->
                                 </div>
                             </div>
                             <?php
@@ -112,9 +110,7 @@ if (count($sliderProducts) > 0) {
                                         <h1><?= $product['title'] ?></h1>
                                         <span class="price"><?= $product['price'] ?> Php</span>
                                     </a>
-                                    <a class="add-to-cart"  href="<?= LANG_URL . '/' . $product['url'] ?>">
-                                        <?= lang('add_to_cart') ?>
-                                    </a>
+<!--                                    <a class="add-to-cart"  href="--><?//= LANG_URL . '/' . $product['url'] ?><!--">More info</a>-->
                                 </div>
                             </div>
                             <?php
@@ -131,7 +127,7 @@ if (count($sliderProducts) > 0) {
 </div>
 <div class="blog-posts">
     <div class="container">
-        <h3>About Us</h3> 
+        <h3>About Us</h3> <br><br>
         <div class="row">
             <div class="col-md-12">
                 <div class="carousel slide multi-item-carousel" id="theCarousel1">

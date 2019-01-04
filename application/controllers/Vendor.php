@@ -67,7 +67,7 @@ class Vendor extends MY_Controller
         $data = array();
         $head = array();
         $data['product'] = $this->Public_model->getOneProduct($id);
-        $data['sameCagegoryProducts'] = $this->Public_model->sameCagegoryProducts($data['product']['shop_categorie'], $id, $vendorInfo['id']);
+        $data['sameCagegoryProducts'] = $this->Public_model->sameCagegoryProducts($data['product']['shop_category'], $id, $vendorInfo['id']);
         if ($data['product'] === null) {
             show_404();
         }

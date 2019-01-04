@@ -127,7 +127,7 @@ class Home extends MY_Controller
         $data = array();
         $head = array();
         $data['product'] = $this->Public_model->getOneProduct($id);
-        $data['sameCagegoryProducts'] = $this->Public_model->sameCagegoryProducts($data['product']['shop_categorie'], $id);
+        $data['sameCagegoryProducts'] = $this->Public_model->sameCagegoryProducts($data['product']['shop_category'], $id);
         if ($data['product'] === null) {
             show_404();
         }

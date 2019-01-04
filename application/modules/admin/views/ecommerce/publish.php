@@ -104,11 +104,11 @@ if ($this->session->flashdata('result_publish')) {
     </div>
     <div class="form-group for-shop">
         <label>Shop Categories</label>
-        <select class="selectpicker form-control show-tick show-menu-arrow" name="shop_categorie">
-            <?php foreach ($shop_categories as $key_cat => $shop_categorie) { ?>
-                <option <?= isset($_POST['shop_categorie']) && $_POST['shop_categorie'] == $key_cat ? 'selected=""' : '' ?> value="<?= $key_cat ?>">
+        <select class="selectpicker form-control show-tick show-menu-arrow" name="shop_category">
+            <?php foreach ($shop_categories as $key_cat => $shop_category) { ?>
+                <option <?= isset($_POST['shop_category']) && $_POST['shop_category'] == $key_cat ? 'selected=""' : '' ?> value="<?= $key_cat ?>">
                     <?php
-                    foreach ($shop_categorie['info'] as $nameAbbr) {
+                    foreach ($shop_category['info'] as $nameAbbr) {
                         if ($nameAbbr['abbr'] == $this->config->item('language_abbr')) {
                             echo $nameAbbr['name'];
                         }

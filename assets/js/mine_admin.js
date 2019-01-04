@@ -28,7 +28,7 @@ $("#dev-zone").click(function () {
 });
 
 $('.btn-publish').click(function (e) {
-    var shop_category = $('[name="shop_categorie"]').val();
+    var shop_category = $('[name="shop_category"]').val();
     if (shop_category == null) {
         e.preventDefault();
         alert('There is no create and selected shop category!');
@@ -296,7 +296,7 @@ $('.saveEditCategorie').click(function () {
     $.ajax({
         type: "POST",
         url: urls.editShopCategorie,
-        data: {for_id: forIdEditCategorie, abbr: abbrEditCategorie, type: 'shop_categorie', name: newValueFromEdit}
+        data: {for_id: forIdEditCategorie, abbr: abbrEditCategorie, type: 'shop_category', name: newValueFromEdit}
     }).done(function (data) {
         $('#categorieEditor .noSaveEdit').show();
         $('#categorieEditor .yesSaveEdit').hide();
