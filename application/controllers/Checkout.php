@@ -91,8 +91,11 @@ class Checkout extends MY_Controller
     private function goToDestination()
     {
         if ($_POST['payment_type'] == 'cashOnDelivery' || $_POST['payment_type'] == 'Bank') {
-            $this->shoppingcart->clearShoppingCart();
-            $this->session->set_flashdata('success_order', true);
+
+	        $cartItems = $this->shoppingcart->getCartItems();
+	        $this->session->set_flashdata('cartItems', $cartItems);
+	        $this->shoppingcart->clearShoppingCart();
+	        $this->session->set_flashdata('success_order', true);
         }
         if ($_POST['payment_type'] == 'Bank') {
             $_SESSION['order_id'] = $this->orderId;
@@ -167,6 +170,7 @@ class Checkout extends MY_Controller
         if ($this->session->flashdata('success_order')) {
             $data = array();
             $head = array();
+	        $data['cartItems'] = $this->session->flashdata('cartItems');
             $arrSeo = $this->Public_model->getSeo('checkout');
             $head['title'] = @$arrSeo['title'];
             $head['description'] = @$arrSeo['description'];
