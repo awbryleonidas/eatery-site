@@ -170,7 +170,9 @@ class Checkout extends MY_Controller
         if ($this->session->flashdata('success_order')) {
             $data = array();
             $head = array();
+            //TODO: subtract number of stocks, loop cart items get id, set to status=no processed
 	        $data['cartItems'] = $this->session->flashdata('cartItems');
+	        $this->Orders_model->checkoutProducts($this->session->flashdata('cartItems'));
             $arrSeo = $this->Public_model->getSeo('checkout');
             $head['title'] = @$arrSeo['title'];
             $head['description'] = @$arrSeo['description'];

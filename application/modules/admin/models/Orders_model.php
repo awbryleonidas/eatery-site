@@ -52,36 +52,52 @@ class Orders_model extends CI_Model
         return $result;
     }
 
-    private function manageQuantitiesAndProcurement($id, $to_status, $current)
-    {
-        if (($to_status == 0 || $to_status == 2) && $current == 1) {
-            $operator = '+';
-            $operator_pro = '-';
-        }
-        if ($to_status == 1) {
-            $operator = '-';
-            $operator_pro = '+';
-        }
-        $this->db->select('products');
-        $this->db->where('id', $id);
-        $result = $this->db->get('orders');
-        $arr = $result->row_array();
-        $products = unserialize($arr['products']);
-        foreach ($products as $product_id => $quantity) {
-            if (isset($operator)) {
-                if (!$this->db->query('UPDATE products SET quantity=quantity' . $operator . $quantity . ' WHERE id = ' . $product_id)) {
-                    log_message('error', print_r($this->db->error(), true));
-                    show_error(lang('database_error'));
-                }
-            }
-            if (isset($operator_pro)) {
-                if (!$this->db->query('UPDATE products SET procurement=procurement' . $operator_pro . $quantity . ' WHERE id = ' . $product_id)) {
-                    log_message('error', print_r($this->db->error(), true));
-                    show_error(lang('database_error'));
-                }
-            }
-        }
-    }
+	private function manageQuantitiesAndProcurement($id, $to_status, $current) {
+		if ( ($to_status == 0 || $to_status == 2)) {
+			$operator = '+';
+			$operator_pro = '-';
+		}
+		if ( $to_status == 1 AND $current == 2) {
+			$operator = '-';
+			$operator_pro = '+';
+		}
+		$this->db->select( 'products' );
+		$this->db->where( 'id', $id );
+		$result = $this->db->get( 'orders' );
+		$arr = $result->row_array();
+		$products = unserialize( $arr['products'] );
+		foreach ( $products as $product_id => $quantity ) {
+			if ( isset( $operator ) ) {
+				if ( !$this->db->query( 'UPDATE products SET quantity=quantity' . $operator . $quantity . ' WHERE id = ' . $product_id ) ) {
+					log_message( 'error', print_r( $this->db->error(), TRUE ) );
+					show_error( lang( 'database_error' ) );
+				}
+			}
+//			if ( isset( $operator_pro ) ) {
+//				if ( !$this->db->query( 'UPDATE products SET procurement=procurement' . $operator_pro . $quantity . ' WHERE id = ' . $product_id ) ) {
+//					log_message( 'error', print_r( $this->db->error(), TRUE ) );
+//					show_error( lang( 'database_error' ) );
+//				}
+//			}
+		}
+
+
+	}
+
+	public function checkoutProducts($products){
+
+		foreach ($products['array'] as $product) {
+			if (!$this->db->query('UPDATE products SET quantity=quantity' . '-' . $product['num_added'] . ' WHERE id = ' . $product['id'])) {
+				log_message('error', print_r($this->db->error(), true));
+				show_error(lang('database_error'));
+			}
+
+//			if (!$this->db->query('UPDATE products SET procurement=procurement' . '+' . $product['num_added'] . ' WHERE id = ' . $product['id'])) {
+//				log_message('error', print_r($this->db->error(), true));
+//				show_error(lang('database_error'));
+//			}
+		}
+	}
 
     public function setBankAccountSettings($post)
     {

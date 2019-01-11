@@ -28,8 +28,9 @@ class Login extends ADMIN_Controller
                 $result = $this->Home_admin_model->loginCheck($_POST);
                 if (!empty($result)) {
                     $_SESSION['last_login'] = $result['last_login'];
-                    $this->session->set_userdata('logged_in', $result['username']);
-                    $this->saveHistory('User ' . $result['username'] . ' logged in');
+	                $this->session->set_userdata('logged_in', $result['username']);
+	                $this->session->set_userdata('logged_in_type', $result['type']);
+                    $this->saveHistory('User ' . $result['username'] . '; user type: '.$result['type'].' logged in');
                     redirect('admin/home');
                 } else {
                     $this->saveHistory('Cant login with - User: ' . $_POST['username'] . ' and Pass: ' . $_POST['username']);

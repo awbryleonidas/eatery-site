@@ -13,6 +13,7 @@
             </ol>
         </div>
     </div>
+	<?php if ($this->session->userdata('logged_in_type') == 'admin') { ?>
     <div class="row">
         <div class="col-lg-3 col-md-6">
             <div class="panel panel-primary">
@@ -48,7 +49,7 @@
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge"><?= $lastSubscribed ?></div>
-                            <div>New subscribed!</div>
+                            <div>New subscribers!</div>
                         </div>
                     </div>
                 </div>
@@ -253,6 +254,10 @@
             </div>
         </div>
     </div>
+
+	<?php } else {?>
+        Page Restricted
+	<?php } ?>
 </div>
 <script>
     /*

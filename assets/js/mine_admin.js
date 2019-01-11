@@ -455,7 +455,7 @@ function changeOrdersOrderStatus(id, to_status, products, userEmail) {
     $.post(urls.changeOrdersOrderStatus, {the_id: id, to_status: to_status, products: products, userEmail: userEmail}, function (data) {
         if (data == '1') {
             if (to_status == 0) {
-                $('[data-action-id="' + id + '"] div.status b').text('No processed');
+                $('[data-action-id="' + id + '"] div.status b').text('Not processed');
                 $('[data-action-id="' + id + '"]').removeClass().addClass('bg-danger text-center');
             }
             if (to_status == 1) {

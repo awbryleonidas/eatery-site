@@ -55,7 +55,7 @@ if (!isset($_GET['settings'])) {
                                         <img src="<?= base_url('assets/imgs/new-blinking.gif') ?>" style="width:100px;" alt="blinking">
                                     </div>
                                 <?php } ?>
-                                <div class="confirm-result">
+                                <div class="confirm-result hide">
                                     <?php if ($tr['confirmed'] == '1') { ?>
                                         <span class="label label-success">Confirmed by email</span>
                                     <?php } else { ?> 
@@ -73,9 +73,9 @@ if (!isset($_GET['settings'])) {
                                 <div class="status" style="padding:5px; font-size:16px;">
                                     -- <b><?= $type ?></b> --
                                 </div>
-                                <div style="margin-bottom:4px;"><a href="javascript:void(0);" onclick="changeOrdersOrderStatus(<?= $tr['id'] ?>, 1, '<?= htmlentities($tr['products']) ?>', '<?= $tr['email'] ?>')" class="btn btn-success btn-xs">Processed</a></div>
-                                <div style="margin-bottom:4px;"><a href="javascript:void(0);" onclick="changeOrdersOrderStatus(<?= $tr['id'] ?>, 0)" class="btn btn-danger btn-xs">No processed</a></div>
-                                <div style="margin-bottom:4px;"><a href="javascript:void(0);" onclick="changeOrdersOrderStatus(<?= $tr['id'] ?>, 2)" class="btn btn-warning btn-xs">Rejected</a></div>
+                                <div style="margin-bottom:4px;"><a href="javascript:void(0);" onclick="changeOrdersOrderStatus(<?= $tr['id'] ?>, 1, '<?= htmlentities($tr['products']) ?>', '<?= $tr['email'] ?>')" class="btn btn-success btn-xs actBtn">Processed</a></div>
+                                <div style="margin-bottom:4px;"><a href="javascript:void(0);" onclick="changeOrdersOrderStatus(<?= $tr['id'] ?>, 2)" class="btn btn-warning btn-xs actBtn">Rejected</a></div>
+
                             </td>
                             <td class="text-center">
                                 <a href="javascript:void(0);" class="btn btn-default more-info" data-toggle="modal" data-target="#modalPreviewMoreInfo" style="margin-top:10%;" data-more-info="<?= $tr['order_id'] ?>">
@@ -143,15 +143,14 @@ if (!isset($_GET['settings'])) {
                                                     foreach ($arr_products as $product_id => $product_quantity) {
                                                         $productInfo = modules::run('admin/ecommerce/products/getProductInfo', $product_id);
                                                         ?>
-                                                        <div style="word-break: break-all;">
-                                                            <div>
-                                                                <img src="<?= base_url('attachments/shop_images/' . $productInfo['image']) ?>" alt="Product" style="width:100px; margin-right:10px;" class="img-responsive">
-                                                            </div>
+                                                        <div style=" overflow: auto;">
+                                                            <img src="<?= base_url('attachments/shop_images/' . $productInfo['image']) ?>" alt="Product" style="width:100px; margin-right:10px;" class="img-responsive">
+
                                                             <a data-toggle="tooltip" data-placement="top" title="Click to preview" target="_blank" href="<?= base_url($productInfo['url']) ?>">
-                                                                <?= base_url($productInfo['url']) ?>
+                                                                <?= $productInfo['product_name'] ?>
                                                                 <div style=" background-color: #f1f1f1; border-radius: 2px; padding: 2px 5px;"><b>Quantity:</b> <?= $product_quantity ?></div>
                                                             </a>
-                                                            <div class="">
+                                                            <div class="hide">
                                                                 <b>Vendor:</b>
                                                                 <a href=""><?= $productInfo['vendor_name'] ?></a>
                                                             </div>
@@ -175,8 +174,7 @@ if (!isset($_GET['settings'])) {
     <?php } else { ?>
         <div class="alert alert-info">No orders to the moment!</div>
     <?php }
-    ?>        
-    <hr>
+    ?>
     <?php
 }
 if (isset($_GET['settings'])) {

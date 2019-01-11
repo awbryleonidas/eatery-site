@@ -30,9 +30,12 @@
                         <div id="navbar" class="collapse navbar-collapse">
                             <ul class="nav navbar-nav">
                                 <li><a href="<?= base_url('admin') ?>"><i class="fa fa-home"></i> Home</a></li>
+
+	                            <?php if ($this->session->userdata('logged_in_type') == 'admin') { ?>
                                 <li><a href="<?= base_url() ?>" target="_blank"><i class="glyphicon glyphicon-star"></i> Production</a></li>
+	                            <?php }?>
                                 <li>
-                                    <a href="javascript:void(0);" class="h-settings"><i class="fa fa-key" aria-hidden="true"></i> Pass Change</a>
+                                    <a href="javascript:void(0);" class="h-settings"><i class="fa fa-key" aria-hidden="true"></i> Password Change</a>
                                     <div class="relative">
                                         <div class="settings">
                                             <div class="panel panel-primary" >
@@ -59,7 +62,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li><a href="javascript:void(0);" data-toggle="modal" data-target="#modalCalculator"><i class="fa fa-calculator" aria-hidden="true"></i> Calculator</a></li>
+<!--                                <li><a href="javascript:void(0);" data-toggle="modal" data-target="#modalCalculator"><i class="fa fa-calculator" aria-hidden="true"></i> Calculator</a></li>-->
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="<?= base_url('admin/logout') ?>"><i class="fa fa-sign-out"></i> Logout</a></li>
@@ -98,26 +101,44 @@
                                             </form>
                                         </div>
                                     </li>
+
                                     <li class="header">PRODUCTS</li>
-                                    <li><a href="<?= base_url('admin/publish') ?>" <?= urldecode(uri_string()) == 'admin/publish' ? 'class="active"' : '' ?>><i class="fa fa-edit" aria-hidden="true"></i> Publish product</a></li>
+
+	                                <?php if ($this->session->userdata('logged_in_type') == 'admin' OR $this->session->userdata('logged_in_type') == 'encoder') { ?>
+                                        <li><a href="<?= base_url('admin/publish') ?>" <?= urldecode(uri_string()) == 'admin/publish' ? 'class="active"' : '' ?>><i class="fa fa-edit" aria-hidden="true"></i> Publish product</a></li>
+	                                <?php } ?>
+
                                     <li><a href="<?= base_url('admin/products') ?>" <?= urldecode(uri_string()) == 'admin/products' ? 'class="active"' : '' ?>><i class="fa fa-files-o" aria-hidden="true"></i> Products</a></li>
+
                                     <?php if ($showBrands == 1) { ?>
                                         <li><a href="<?= base_url('admin/brands') ?>" <?= urldecode(uri_string()) == 'admin/brands' ? 'class="active"' : '' ?>><i class="fa fa-registered" aria-hidden="true"></i> Brands</a></li>
                                     <?php } ?>
-                                    <li><a href="<?= base_url('admin/shopcategories') ?>" <?= urldecode(uri_string()) == 'admin/shopcategories' ? 'class="active"' : '' ?>><i class="fa fa-list-alt" aria-hidden="true"></i> Shop Categories</a></li>
-                                    <li>
-                                        <a href="<?= base_url('admin/orders') ?>" <?= urldecode(uri_string()) == 'admin/orders' ? 'class="active"' : '' ?>>
-                                            <i class="fa fa-money" aria-hidden="true"></i> Orders 
-                                            <?php if ($numNotPreviewOrders > 0) { ?>
-                                                <img src="<?= base_url('assets/imgs/exlamation-hi.png') ?>" style="position: absolute; right:10px; top:7px;" alt="">
-                                            <?php } ?>
-                                        </a>
-                                    </li>
+
+	                                <?php if ($this->session->userdata('logged_in_type') == 'admin' OR $this->session->userdata('logged_in_type') == 'encoder') { ?>
+                                        <li><a href="<?= base_url('admin/shopcategories') ?>" <?= urldecode(uri_string()) == 'admin/shopcategories' ? 'class="active"' : '' ?>><i class="fa fa-list-alt" aria-hidden="true"></i> Shop Categories</a></li>
+	                                <?php } ?>
+
+                                    <?php if ($this->session->userdata('logged_in_type') == 'admin' OR $this->session->userdata('logged_in_type') == 'staff') { ?>
+                                        <li>
+                                            <a href="<?= base_url('admin/orders') ?>" <?= urldecode(uri_string()) == 'admin/orders' ? 'class="active"' : '' ?>>
+                                                <i class="fa fa-money" aria-hidden="true"></i> Orders
+                                                <?php if ($numNotPreviewOrders > 0) { ?>
+                                                    <img src="<?= base_url('assets/imgs/exlamation-hi.png') ?>" style="position: absolute; right:10px; top:7px;" alt="">
+                                                <?php } ?>
+                                            </a>
+                                        </li>
+                                    <?php }?>
+
+	                                <?php if ($this->session->userdata('logged_in_type') == 'admin' OR $this->session->userdata('logged_in_type') == 'encoder') { ?>
                                     <li><a href="<?= base_url('admin/discounts') ?>" <?= urldecode(uri_string()) == 'admin/discounts' ? 'class="active"' : '' ?>><i class="fa fa-percent" aria-hidden="true"></i> Discount Codes</a></li>
-                                    <?php if (in_array('blog', $activePages)) { ?>
-                                        <li class="header">BLOG</li>
-                                        <li><a href="<?= base_url('admin/blogpublish') ?>" <?= urldecode(uri_string()) == 'admin/blogpublish' ? 'class="active"' : '' ?>><i class="fa fa-edit" aria-hidden="true"></i> Publish post</a></li>
-                                        <li><a href="<?= base_url('admin/blog') ?>" <?= urldecode(uri_string()) == 'admin/blog' ? 'class="active"' : '' ?>><i class="fa fa-th" aria-hidden="true"></i> Posts</a></li>
+	                                <?php } ?>
+
+	                                <?php if ($this->session->userdata('logged_in_type') == 'admin' OR $this->session->userdata('logged_in_type') == 'encoder') { ?>
+                                        <?php if (in_array('blog', $activePages)) { ?>
+                                            <li class="header">BLOG</li>
+                                            <li><a href="<?= base_url('admin/blogpublish') ?>" <?= urldecode(uri_string()) == 'admin/blogpublish' ? 'class="active"' : '' ?>><i class="fa fa-edit" aria-hidden="true"></i> Publish post</a></li>
+                                            <li><a href="<?= base_url('admin/blog') ?>" <?= urldecode(uri_string()) == 'admin/blog' ? 'class="active"' : '' ?>><i class="fa fa-th" aria-hidden="true"></i> Posts</a></li>
+                                        <?php } ?>
                                     <?php } ?>
                                     <?php
                                     if (!empty($textualPages)) {
@@ -134,6 +155,8 @@
                                         }
                                     }
                                     ?>
+
+                                    <?php if ($this->session->userdata('logged_in_type') == 'admin') { ?>
                                     <li class="header">SETTINGS</li>
                                     <li><a href="<?= base_url('admin/settings') ?>" <?= urldecode(uri_string()) == 'admin/settings' ? 'class="active"' : '' ?>><i class="fa fa-wrench" aria-hidden="true"></i> Settings</a></li>
                                     <li><a href="<?= base_url('admin/titles') ?>" <?= urldecode(uri_string()) == 'admin/titles' ? 'class="active"' : '' ?>><i class="fa fa-font" aria-hidden="true"></i> Titles / Descriptions</a></li>
@@ -142,6 +165,7 @@
                                     <li class="header">ADVANCED SETTINGS</li>
                                     <li><a href="<?= base_url('admin/filemanager') ?>" <?= urldecode(uri_string()) == 'admin/filemanager' ? 'class="active"' : '' ?>><i class="fa fa-file-code-o" aria-hidden="true"></i> File Manager</a></li>
                                     <li><a href="<?= base_url('admin/adminusers') ?>" <?= urldecode(uri_string()) == 'admin/adminusers' ? 'class="active"' : '' ?>><i class="fa fa-user" aria-hidden="true"></i> Admin Users</a></li>
+                                    <?php }?>
                                 </ul>
                             </div>
                             <div class="col-sm-9 col-md-9 col-lg-10 col-sm-offset-3 col-md-offset-3 col-lg-offset-2">

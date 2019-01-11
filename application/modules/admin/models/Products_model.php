@@ -76,9 +76,10 @@ class Products_model extends CI_Model
 
     public function getOneProduct($id)
     {
-        $this->db->select('vendors.name as vendor_name, vendors.id as vendor_id, products.*');
+        $this->db->select('vendors.name as vendor_name, vendors.id as vendor_id, products.*, products_translations.title as product_name');
         $this->db->where('products.id', $id);
-        $this->db->join('vendors', 'vendors.id = products.vendor_id', 'left');
+	    $this->db->join('vendors', 'vendors.id = products.vendor_id', 'left');
+	    $this->db->join('products_translations', 'products_translations.for_id = products.id', 'left');
         $query = $this->db->get('products');
         if ($query->num_rows() > 0) {
             return $query->row_array();
