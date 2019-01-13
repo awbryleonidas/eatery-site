@@ -323,7 +323,14 @@ class Public_model extends CI_Model
             log_message('error', print_r($this->db->error(), true));
         }
         $lastId = $this->db->insert_id();
-        if (!$this->db->insert('orders_clients', array(
+        if (!$this->db->insert('orders_summary', array(
+                    'order_id' => $post['order_id'],
+                    'total_cost' => $post['final_amount'],
+                    'with_delivery' => $post['withDelivery'],
+                    'delivery_cost' => $post['deliveryFee']
+                ))) {
+            log_message('error', print_r($this->db->error(), true));
+        }if (!$this->db->insert('orders_clients', array(
                     'for_id' => $lastId,
                     'first_name' => $post['first_name'],
                     'last_name' => $post['last_name'],

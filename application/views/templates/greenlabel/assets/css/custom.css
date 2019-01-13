@@ -13,7 +13,7 @@ body {font-family: 'Roboto', sans-serif;}
 .user-page .loginmodal-container {margin: auto;}
 .header {/*padding-top: 5px; margin-bottom: 30px;*/}
 .header .top {border-bottom: 1px solid #ddd; padding-bottom: 50px;}
-.header .logo img {max-width: 100%;}
+.header .logo img {max-width: 100%; right: 200px;}
 .header .phone, .header .dropdown-langs {float: left;}
 .header .phone {margin-right: 15px} 
 .header .dropdown-langs button {background-color: transparent; border:0;}
@@ -164,7 +164,7 @@ nav .navbar-header .menu-text-xs {text-transform: uppercase;float: left;margin-t
 #shop-page .categories ul li, div.filter-sidebar ul li a { margin-bottom : 4px; }
 #shop-page .categories ul li a { color : #6d6d6d; display : inline-block; font-size : 13px; }
 #shop-page .categories ul li a.selected, div.filter-sidebar ul li a:hover { color : #1e88e5; }
-#shop-page .product-inner .img-responsive {margin: 0 auto;}
+#shop-page .product-inner .img-responsive {margin: 20px;}
 #show-xs-nav { border : 1px solid #666; color : #666; font-size : 15px; padding : 3px; text-align : center; text-decoration : none; }
 #show-xs-nav span i { margin-left : 5px; }
 #shop-page .bootstrap-select > .dropdown-toggle.bs-placeholder, #shop-page .bootstrap-select > .dropdown-toggle.bs-placeholder:active, #shop-page .bootstrap-select > .dropdown-toggle.bs-placeholder:focus, #shop-page .bootstrap-select > .dropdown-toggle.bs-placeholder:hover {color:#fff;}

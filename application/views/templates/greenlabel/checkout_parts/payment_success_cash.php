@@ -43,7 +43,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </tr>
 						<?php } ?>
                         <tr>
-                            <td colspan="4" class="text-right"><?= lang('total') ?></td>
+	                        <?php
+		                        $status = number_format($cartItems['finalSum']) < $shippingOrder;
+		                        $cartItems['finalSum'] = ($status)? $cartItems['finalSum'] + $deliveryFee: $cartItems['finalSum'];
+	                        ?>
+                            <td colspan="4" class="text-right"><?= lang('total') ?><?php echo ($status)? ' + delivery fee'. '('.$deliveryFee.'.00php)': '' ?></td>
                             <td><?= $cartItems['finalSum'] . CURRENCY ?></td>
                         </tr>
                         </tbody>

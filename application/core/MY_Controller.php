@@ -83,6 +83,7 @@ class MY_Controller extends MX_Controller
         $vars['load'] = $this->loop;
         $vars['cookieLaw'] = $this->Public_model->getCookieLaw();
         $vars['codeDiscounts'] = $this->Home_admin_model->getValueStore('codeDiscounts');
+	    $data['shippingOrder'] = $this->Home_admin_model->getValueStore('shippingOrder');
         return $vars;
     }
 

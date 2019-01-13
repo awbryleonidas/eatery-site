@@ -19,6 +19,8 @@ class ShoppingCartPage extends MY_Controller
         $head['title'] = @$arrSeo['title'];
         $head['description'] = @$arrSeo['description'];
         $head['keywords'] = str_replace(" ", ",", $head['title']);
+	    $data['shippingOrder'] = $this->Home_admin_model->getValueStore('shippingOrder');
+	    $data['deliveryFee'] = $this->Home_admin_model->getValueStore('deliveryFee');
         $this->render('shopping_cart', $head, $data);
     }
 

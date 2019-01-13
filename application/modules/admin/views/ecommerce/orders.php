@@ -92,16 +92,8 @@ if (!isset($_GET['settings'])) {
                                                 <td><a href="mailto:<?= $tr['email'] ?>"><?= $tr['email'] ?></a></td>
                                             </tr>
                                             <tr>
-                                                <td><b>City</b></td>
-                                                <td><?= $tr['city'] ?></td>
-                                            </tr>
-                                            <tr>
                                                 <td><b>Address</b></td>
-                                                <td><?= $tr['address'] ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Postcode</b></td>
-                                                <td><?= $tr['post_code'] ?></td>
+                                                <td><?= $tr['address'] ?>, <?= $tr['city'] ?></td>
                                             </tr>
                                             <tr>
                                                 <td><b>Notes</b></td>
@@ -126,6 +118,18 @@ if (!isset($_GET['settings'])) {
                                             <tr>
                                                 <td><b>Discount</b></td>
                                                 <td><?= $tr['discount_type'] == 'float' ? '-' . $tr['discount_amount'] : '-' . $tr['discount_amount'] . '%' ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>With Delivery</b></td>
+                                                <td><?= ($tr['withDelivery'])? 'Yes': 'No' ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Delivery Cost</b></td>
+                                                <td><?= $tr['deliveryCost'] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Total Cost</b></td>
+                                                <td><?= $tr['totalCost']?></td>
                                             </tr>
                                             <?php if ($tr['payment_type'] == 'PayPal') { ?>
                                                 <tr>

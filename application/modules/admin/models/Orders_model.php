@@ -24,10 +24,12 @@ class Orders_model extends CI_Model
             $this->db->order_by('id', 'DESC');
         }
         $this->db->select('orders.*, orders_clients.first_name,'
+                . ' orders_summary.with_delivery as withDelivery, orders_summary.total_cost as totalCost, orders_summary.delivery_cost as deliveryCost, '
                 . ' orders_clients.last_name, orders_clients.email, orders_clients.phone, '
                 . 'orders_clients.address, orders_clients.city, orders_clients.post_code,'
                 . ' orders_clients.notes, discount_codes.type as discount_type, discount_codes.amount as discount_amount');
-        $this->db->join('orders_clients', 'orders_clients.for_id = orders.id', 'inner');
+	    $this->db->join('orders_clients', 'orders_clients.for_id = orders.id', 'inner');
+	    $this->db->join('orders_summary', 'orders_summary.order_id = orders.order_id', 'inner');
         $this->db->join('discount_codes', 'discount_codes.code = orders.discount_code', 'left');
         $result = $this->db->get('orders', $limit, $page);
         return $result->result_array();

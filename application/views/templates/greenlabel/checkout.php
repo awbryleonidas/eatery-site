@@ -135,12 +135,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </tr>
                                 <?php } ?>
                                 <tr>
-                                    <td colspan="4" class="text-right"><?= lang('total') ?></td>
+	                                <?php
+                                        $status = number_format($cartItems['finalSum']) < $shippingOrder;
+                                        $cartItems['finalSum'] = ($status)? $cartItems['finalSum'] + $deliveryFee: $cartItems['finalSum'];
+                                    ?>
+                                    <td colspan="4" class="text-right"><?= lang('total') ?><?php echo ($status)? ' + delivery fee'. '('.$deliveryFee.'.00php)': '' ?></td>
                                     <td>
                                         <span class="final-amount"><?= $cartItems['finalSum'] ?></span><?= CURRENCY ?>
                                         <input type="hidden" class="final-amount" name="final_amount" value="<?= $cartItems['finalSum'] ?>">
                                         <input type="hidden" name="amount_currency" value="<?= CURRENCY ?>">
                                         <input type="hidden" name="discountAmount" value="">
+                                        <input type="hidden" name="withDelivery" value="<?= $status ?>">
+                                        <input type="hidden" name="deliveryFee" value="<?= $deliveryFee ?>">
                                     </td>
                                 </tr>
                             </tbody>

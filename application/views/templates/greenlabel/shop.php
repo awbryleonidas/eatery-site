@@ -127,8 +127,11 @@ $pagename = array();
 <!--            <h1>--><?//= lang('products') ?><!--</h1>-->
             <?php
             if (!empty($products)) {
+                $ctr = 1;
                 foreach ($products as $product) {
                     ?>
+
+                    <?php if ($ctr>3){?><br><?php }$ctr++;?>
                     <div class="col-sm-6 col-md-4 product-inner">
                         <a href="<?= LANG_URL . '/' . $product['url'] ?>">
                             <img src="<?= base_url('attachments/shop_images/' . $product['image']) ?>" alt="" class="img-responsive">

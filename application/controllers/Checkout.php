@@ -52,6 +52,8 @@ class Checkout extends MY_Controller
         $data['paypal_email'] = $this->Home_admin_model->getValueStore('paypal_email');
         $data['default_city'] = $this->Home_admin_model->getValueStore('defaultCity');
         $data['bestSellers'] = $this->Public_model->getbestSellers();
+	    $data['shippingOrder'] = $this->Home_admin_model->getValueStore('shippingOrder');
+	    $data['deliveryFee'] = $this->Home_admin_model->getValueStore('deliveryFee');
         $this->render('checkout', $head, $data);
     }
 
@@ -170,7 +172,8 @@ class Checkout extends MY_Controller
         if ($this->session->flashdata('success_order')) {
             $data = array();
             $head = array();
-            //TODO: subtract number of stocks, loop cart items get id, set to status=no processed
+	        $data['shippingOrder'] = $this->Home_admin_model->getValueStore('shippingOrder');
+	        $data['deliveryFee'] = $this->Home_admin_model->getValueStore('deliveryFee');
 	        $data['cartItems'] = $this->session->flashdata('cartItems');
 	        $this->Orders_model->checkoutProducts($this->session->flashdata('cartItems'));
             $arrSeo = $this->Public_model->getSeo('checkout');

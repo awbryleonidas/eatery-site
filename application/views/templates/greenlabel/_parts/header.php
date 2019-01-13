@@ -49,7 +49,7 @@
             </div>
             <div class="row header">
                 <div class="col-md-4 col-xs-12">
-                    <div class="logo">
+                    <div class="logo"  style="overflow: hidden;" >
                         <a href="<?= LANG_URL ?>">
                             <img src="<?= base_url('attachments/site_logo/' . $sitelogo) ?>" alt="<?= $title ?>">
                         </a>
