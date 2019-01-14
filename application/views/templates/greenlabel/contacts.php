@@ -3,9 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?> 
 <div id="contacts">
 <!--    <div id="map"></div>-->
-    <div class="container">
+    <div class="container ">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8 hide">
                 <?php
                 if ($this->session->flashdata('resultSend')) {
                     ?>
@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <hr>
                 <?php }
                 ?> 
-                <div class="contact-form">
+                <div class="contact-form hide">
                     <legend><?= lang('contact_details') ?></legend>
                     <form method="POST" action=""> 
                         <div class="form-group">
@@ -44,7 +44,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </form> 
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-8">
                 <div class="contact-details">
                     <legend><?= lang('contact_details') ?></legend>
                     <address>

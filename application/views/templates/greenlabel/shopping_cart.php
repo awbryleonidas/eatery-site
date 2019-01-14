@@ -54,8 +54,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <?php } ?>
                     <tr>
 	                    <?php
-		                    $status = number_format($cartItems['finalSum']) < $shippingOrder;
-		                    $cartItems['finalSum'] = ($status)? $cartItems['finalSum'] + $deliveryFee: $cartItems['finalSum'];
+		                    $status = number_format(str_replace(",","",$cartItems['finalSum'])) < $shippingOrder;
+		                    $cartItems['finalSum'] = ($status)? number_format(str_replace(",","",$cartItems['finalSum']) + $deliveryFee): $cartItems['finalSum'];
 	                    ?>
                         <td colspan="4" class="text-right"><?= lang('total') ?><?php echo ($status)? ' + delivery fee'. '('.$deliveryFee.'.00php)': '' ?></td>
                         <td><?= $cartItems['finalSum'] . CURRENCY ?></td>

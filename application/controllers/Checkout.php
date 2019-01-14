@@ -127,7 +127,11 @@ class Checkout extends MY_Controller
             $errors[] = lang('invalid_email');
         }
         $post['phone'] = preg_replace("/[^0-9]/", '', $post['phone']);
+
         if (mb_strlen(trim($post['phone'])) == 0) {
+            $errors[] = lang('invalid_phone');
+        }
+        if ((strlen($post['phone']) > 11 OR strlen($post['phone']) < 11)) {
             $errors[] = lang('invalid_phone');
         }
         if (mb_strlen(trim($post['address'])) == 0) {
